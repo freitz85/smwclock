@@ -747,9 +747,15 @@ DISPLAY:MOV     AL,SW$TIME.DY           ; Get day-of-week
 ;----------------------------------------------------------------------;
 ;       Display the year                                               ;
 ;----------------------------------------------------------------------;
+        CMP     SW$TIME.YY,160          ; Is year greater 99?
+        JGE     MIL                     ; Jump into new millenium
         PRINT   <'1'>                   ;
         PRINT   <'9'>                   ;
-        BIN_HEX SW$TIME.YY              ; Display year
+        JMP     DISPL                   ;
+MIL:    PRINT   <'2'>                   ;
+        PRINT   <'0'>                   ;
+        SUB     SW$TIME.YY,160          ; Subtract 100 years in BCD
+DISPL:  BIN_HEX SW$TIME.YY              ; Display year
         PRINT   <','>                   ;
         PRINT   <' '>                   ;
 ;----------------------------------------------------------------------;
