@@ -1,0 +1,8 @@
+
+
+Warning: no stack segment
+
+ Start  Stop   Length Name                   Class
+ 00000H 0079AH 0079BH $SMW                   $SMW
+
+Program entry point at 0000:0100
