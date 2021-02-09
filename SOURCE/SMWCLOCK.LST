@@ -1,8 +1,9 @@
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-1
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-1
                                                             
 
-                                       TITLE   SMW$CLOCK V01.02 
+                                        TITLE   SMW$CLOCK V01.03 
                                         NAME    SMW$CLOCK 
                                         PAGE    64,132 
                                 ;----------------------------------------------------------------------; 
@@ -62,8 +63,9 @@ SMW$CLOCK V01.02                                            Page     1-1
                                 ;                       (3)  Allows the DS1216 to be located in the    ; 
                                 ;                            system and the clock time to be displayed.; 
                                 ;                            This is the FIND option.  (DEFAULT)       ; 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-2
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-2
                                                             
 
                                 ;                                                                      ; 
@@ -94,13 +96,19 @@ SMW$CLOCK V01.02                                            Page     1-2
                                 ;                                Fix bug in setting of 24-hour mode.   ; 
                                 ;                                24-hour mode is selected by clearing  ; 
                                 ;                                rather than setting the mode bit.     ; 
+                                ;                                                                      ; 
+                                ;                       V01.03 - 21-DEC-2020, Florian Reitz            ; 
+                                ;                                Y2K fix in DISPLAY.                   ; 
+                                ;                                Years after 1999 are now printed      ; 
+                                ;                                correctly.                            ; 
                                 ;----------------------------------------------------------------------; 
                                 ;       Assemble using standard instructions and suppress expansions   ; 
                                 ;----------------------------------------------------------------------; 
                                         .SALL 
                                         SUBTTL  Define local macros 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-3
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-3
 Define local macros                                         
 
                                         PAGE 
@@ -134,8 +142,9 @@ Define local macros
                                         ENDM 
                                  
                                         ENDM 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-4
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-4
 Define local macros                                         
 
                                         PAGE 
@@ -191,8 +200,9 @@ Define local macros
                                         CALL    HEX                     ; Convert to ASCII hex 
                                  
                                         ENDM 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-5
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-5
 Define local macros                                         
 
                                         PAGE 
@@ -230,8 +240,9 @@ Define local macros
                                         ENDIF                           ; Terminate conditional 
                                  
                                         ENDM 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-6
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-6
 Define local macros                                         
 
                                         PAGE 
@@ -288,8 +299,9 @@ Define local macros
                                         LOOP&X  LBL                     ; ... and continue looping 
                                  
                                         ENDM 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-7
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-7
 Define local macros                                         
 
                                         PAGE 
@@ -349,8 +361,9 @@ Define local macros
                                  
                                         ENDM 
                                         SUBTTL  Define data structures 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-8
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-8
 Define data structures                                      
 
                                         PAGE 
@@ -385,8 +398,9 @@ Define data structures
                                 ;       Start processing by finding the SmartWatch                     ; 
                                 ;----------------------------------------------------------------------; 
  010D  E9 01C4 R                        JMP     SEARCH                  ; ... and begin SmartWatch search 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-9
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-9
 Define data structures                                      
 
                                         PAGE 
@@ -448,8 +462,9 @@ Define data structures
  0122  00                       
  0123  00                       
                                 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-10
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-10
 Define data structures                                      
 
                                         PAGE 
@@ -489,8 +504,9 @@ Define data structures
        3F 3F 2D 3F 3F 3F 2D     
        3F 3F 3F 2D              
                                         SUBTTL  SmartWatch search routine 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-11
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-11
 SmartWatch search routine                                   
 
                                         PAGE 
@@ -537,7 +553,7 @@ SmartWatch search routine
                                 ;       Read SmartWatch using current guess at the correct segment     ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 01D3  E8 05E2 R                CHECK:  CALL    READ                    ; Read SmartWatch data 
+ 01D3  E8 05E0 R                CHECK:  CALL    READ                    ; Read SmartWatch data 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Check to see if the returned data is all ones                  ; 
@@ -551,8 +567,9 @@ SmartWatch search routine
                                  
  01E0  F3/ AF                           REPE    SCASW                   ; Skip any repeated data 
  01E2  74 3F                            JE      NEXT                    ; Invalid data - check next segment 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-12
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-12
 SmartWatch search routine                                   
 
                                         PAGE 
@@ -581,15 +598,15 @@ SmartWatch search routine
  0204  B0 80                            MOV     AL,80h                  ; Rolling bit test (8 patterns) 
                                  
  0206  A2 0123 R                VERIFY: MOV     SW$TIME.YY,AL           ; Load test data pattern 
- 0209  E8 0674 R                        CALL    WRITE                   ; Rewrite the SmartWatch data 
- 020C  E8 05E2 R                        CALL    READ                    ; Reread the SmartWatch data 
+ 0209  E8 0672 R                        CALL    WRITE                   ; Rewrite the SmartWatch data 
+ 020C  E8 05E0 R                        CALL    READ                    ; Reread the SmartWatch data 
  020F  38 06 0123 R                     CMP     SW$TIME.YY,AL           ; Valid year returned? 
  0213  75 0E                            JNE     NEXT                    ; No, check next address segment 
  0215  D0 E8                            SHR     AL,1                    ; Generate next data pattern 
  0217  75 ED                            JNZ     VERIFY                  ; ... and continue verification 
                                  
  0219  88 26 0123 R                     MOV     SW$TIME.YY,AH           ; Restore the original year 
- 021D  E8 0674 R                        CALL    WRITE                   ; ... and rewrite SmartWatch data 
+ 021D  E8 0672 R                        CALL    WRITE                   ; ... and rewrite SmartWatch data 
  0220  EB 44 90                         JMP     COMMAND                 ; Process user command 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
@@ -609,10 +626,11 @@ SmartWatch search routine
                                 ;       Watch not found!  Display error message and exit.              ; 
                                 ;----------------------------------------------------------------------; 
                                         PRINT   ,<'ERROR:  SmartWatch not found!'> 
- 0263  E9 05D5 R                        JMP     EXIT                    ; Terminate program 
+ 0263  E9 05D3 R                        JMP     EXIT                    ; Terminate program 
                                         SUBTTL  Process user command 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-13
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-13
 Process user command                                        
 
                                         PAGE 
@@ -658,8 +676,9 @@ Process user command
  028E                           VECTOR: CASE    BX,0,2,<>,<FIND,CAL,SET> 
  02A5  E9 0503 R                        JMP     DISPLAY                 ; Display if invalid command 
                                         SUBTTL  Function:  find SmartWatch 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-14
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-14
 Function:  find SmartWatch                                  
 
                                         PAGE 
@@ -675,7 +694,7 @@ Function:  find SmartWatch
                                 ;----------------------------------------------------------------------; 
                                 ;       Display the SmartWatch segment address                         ; 
                                 ;----------------------------------------------------------------------; 
- 02A8                           FIND:   PRINT   ,<'SmartWatch V01.02 found at address '> 
+ 02A8                           FIND:   PRINT   ,<'SmartWatch V01.03 found at address '> 
                                  
  02DA  A1 0112 R                        MOV     AX,SW$PARA              ; Get address segment 
                                         BIN_HEX AH                      ; Display high nibble 
@@ -686,8 +705,9 @@ Function:  find SmartWatch
                                 ;----------------------------------------------------------------------; 
  02FA  E9 0503 R                        JMP     DISPLAY                 ; Display current time 
                                         SUBTTL  Function:  calibrate time 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-15
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-15
 Function:  calibrate time                                   
 
                                         PAGE 
@@ -735,14 +755,15 @@ Function:  calibrate time
                                 ;----------------------------------------------------------------------; 
                                 ;       Rewrite the corrected SmartWatch data                          ; 
                                 ;----------------------------------------------------------------------; 
- 03F5  E8 0674 R                        CALL    WRITE                   ; Rewrite the SmartWatch data 
+ 03F5  E8 0672 R                        CALL    WRITE                   ; Rewrite the SmartWatch data 
                                 ;----------------------------------------------------------------------; 
                                 ;       Display current time and return to caller                      ; 
                                 ;----------------------------------------------------------------------; 
  03F8  E9 0503 R                        JMP     DISPLAY                 ; Display current time 
                                         SUBTTL  Function:  set DOS time 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-16
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-16
 Function:  set DOS time                                     
 
                                         PAGE 
@@ -790,14 +811,15 @@ Function:  set DOS time
                                 ;----------------------------------------------------------------------; 
                                 ;       Reread the SmartWatch time for display purposes                ; 
                                 ;----------------------------------------------------------------------; 
- 04FD  E8 05E2 R                        CALL    READ                    ; Read current SmartWatch time 
+ 04FD  E8 05E0 R                        CALL    READ                    ; Read current SmartWatch time 
                                 ;----------------------------------------------------------------------; 
                                 ;       Display current time and return to caller                      ; 
                                 ;----------------------------------------------------------------------; 
  0500  EB 01 90                         JMP     DISPLAY                 ; Display current time 
                                         SUBTTL  Display the SmartWatch time 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-17
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-17
 Display the SmartWatch time                                 
 
                                         PAGE 
@@ -843,34 +865,37 @@ Display the SmartWatch time
                                 ;----------------------------------------------------------------------; 
                                 ;       Display the year                                               ; 
                                 ;----------------------------------------------------------------------; 
- 0568  80 3E 0123 R A0                  CMP     SW$TIME.YY,160          ; Is year greater 99? 
+ 0568  80 3E 0123 R A0                  CMP     SW$TIME.YY,0A0h         ; Is year greater 99? 
  056D  7D 0F                            JGE     MIL                     ; Jump into new millenium 
                                         PRINT   <'1'>                   ; 
                                         PRINT   <'9'>                   ; 
  057B  EB 12 90                         JMP     DISPL                   ; 
  057E                           MIL:    PRINT   <'2'>                   ; 
-                                	PRINT   <'0'>                   ; 
- 058A  80 2E 0123 R A0                  SUB     SW$TIME.YY,160          ; Subtract 100 years in BCD 
- 058F                           DISPL:  BIN_HEX SW$TIME.YY		; Display year 
+                                        PRINT   <'0'>                   ; 
+ 058A  A0 0123 R                        MOV     AL,SW$TIME.YY           ; 
+ 058D  2C A0                            SUB     AL,0A0h                 ; Subtract 100 years in BCD 
+ 058F                           DISPL:  BIN_HEX AL                      ; Display year 
                                         PRINT   <','>                   ; 
                                         PRINT   <' '>                   ; 
                                 ;----------------------------------------------------------------------; 
                                 ;       Display the time                                               ; 
                                 ;----------------------------------------------------------------------; 
- 05A2  80 26 011F R 7F                  AND     SW$TIME.HH,7Fh          ; Strip mode bit 
+ 05A0  80 26 011F R 7F                  AND     SW$TIME.HH,7Fh          ; Strip mode bit 
                                         BIN_HEX SW$TIME.HH              ; Display hour 
-                                        PRINT   <':'>                   ; 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-18
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-18
 Display the SmartWatch time                                 
 
+                                        PRINT   <':'>                   ; 
                                         BIN_HEX SW$TIME.MM              ; Display minute 
                                         PRINT   <':'>                   ; 
                                         BIN_HEX SW$TIME.SC              ; Display second 
                                         PRINT   <'.'>                   ; 
                                         BIN_HEX SW$TIME.CC              ; Display centisecond 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-19
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-19
 Display the SmartWatch time                                 
 
                                         PAGE 
@@ -879,13 +904,14 @@ Display the SmartWatch time
                                 ;       Terminate update and return to DOS                             ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 05D5  8B E5                    EXIT:   MOV     SP,BP                   ; Restore stack pointer 
+ 05D3  8B E5                    EXIT:   MOV     SP,BP                   ; Restore stack pointer 
                                         POPALL                          ; Restore all registers 
- 05E1  C3                               RET                             ; Return to DOS 
+ 05DF  C3                               RET                             ; Return to DOS 
                                 SMW     ENDP 
                                         SUBTTL  SmartWatch read routine 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-20
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-20
 SmartWatch read routine                                     
 
                                         PAGE 
@@ -905,41 +931,42 @@ SmartWatch read routine
                                 ;                       SW$INIT contains 8 bytes of initialization     ; 
                                 ;                       SW$TIME returns the current SmartWatch time    ; 
                                 ;----------------------------------------------------------------------; 
- 05E2                           READ    PROC    NEAR                    ; Read SmartWatch time 
+ 05E0                           READ    PROC    NEAR                    ; Read SmartWatch time 
                                         PUSHALL                         ; Save all registers 
- 05ED  FA                               CLI                             ; Inhibit system interrupts 
+ 05EB  FA                               CLI                             ; Inhibit system interrupts 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Reset the SmartWatch                                           ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 05EE  E8 0730 R                        CALL    RESET                   ; Reset the SmartWatch 
+ 05EC  E8 072E R                        CALL    RESET                   ; Reset the SmartWatch 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Transfer the SmartWatch protocol                               ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 05F1  8D 36 0114 R                     LEA     SI,SW$INIT              ; Load initialization protocol address 
- 05F5  E8 069C R                        CALL    WRT                     ; ... and write it to the Watch 
+ 05EF  8D 36 0114 R                     LEA     SI,SW$INIT              ; Load initialization protocol address 
+ 05F3  E8 069A R                        CALL    WRT                     ; ... and write it to the Watch 
                                 ;----------------------------------------------------------------------; 
                                 ;       Load the address of the return time data buffer                ; 
                                 ;----------------------------------------------------------------------; 
- 05F8  8D 3E 011C R                     LEA     DI,SW$TIME              ; Load return time address 
+ 05F6  8D 3E 011C R                     LEA     DI,SW$TIME              ; Load return time address 
                                 ;----------------------------------------------------------------------; 
                                 ;       Initialize data segment to that of the SmartWatch              ; 
                                 ;----------------------------------------------------------------------; 
- 05FC  2E: 8E 1E 0112 R                 MOV     DS,CS:SW$PARA           ; Load the SmartWatch data segment 
+ 05FA  2E: 8E 1E 0112 R                 MOV     DS,CS:SW$PARA           ; Load the SmartWatch data segment 
                                 ;----------------------------------------------------------------------; 
                                 ;       Determine access mode which will be used with SmartWatch       ; 
                                 ;----------------------------------------------------------------------; 
- 0601  2E: 8B 1E 0110 R                 MOV     BX,CS:SW$MODE           ; Get SmartWatch access mode 
+ 05FF  2E: 8B 1E 0110 R                 MOV     BX,CS:SW$MODE           ; Get SmartWatch access mode 
                                 ;----------------------------------------------------------------------; 
                                 ;       Vector to action routine based on SmartWatch access mode       ; 
                                 ;----------------------------------------------------------------------; 
                                         CASE    BX,1,3,<RD_>,<ROM,ROM0,ROM1> 
                                         SUBTTL  Read - ROM access mode 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-21
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-21
 Read - ROM access mode                                      
 
                                         PAGE 
@@ -954,24 +981,25 @@ Read - ROM access mode
                                 ;       Read the current time from the SmartWatch                      ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 061D                           RD_ROM: REPEAT  RD_ROM_WORD,4           ; Repeat for 8 bytes (4 words) 
+ 061B                           RD_ROM: REPEAT  RD_ROM_WORD,4           ; Repeat for 8 bytes (4 words) 
                                  
                                         REPEAT  RD_ROM_BITS,16          ; Repeat for 16 bits in each word 
- 0625  A0 0004                          MOV     AL,DS:[0100b]           ; Read data byte (bit) from SmartWatch 
- 0628  D0 D8                            RCR     AL,1                    ; Rotate LSB to carry bit 
- 062A  D1 DB                            RCR     BX,1                    ; Rotate LSB to MSB of result register 
+ 0623  A0 0004                          MOV     AL,DS:[0100b]           ; Read data byte (bit) from SmartWatch 
+ 0626  D0 D8                            RCR     AL,1                    ; Rotate LSB to carry bit 
+ 0628  D1 DB                            RCR     BX,1                    ; Rotate LSB to MSB of result register 
                                         ENDR    RD_ROM_BITS             ; Terminate bit fill repetition 
                                  
- 062F  8B C3                            MOV     AX,BX                   ; Get result data word 
- 0631  AB                               STOSW                           ; Store the complete 16 bit result 
+ 062D  8B C3                            MOV     AX,BX                   ; Get result data word 
+ 062F  AB                               STOSW                           ; Store the complete 16 bit result 
                                         ENDR    RD_ROM_WORD             ; Terminate word fill repetition 
                                 ;----------------------------------------------------------------------; 
                                 ;       Terminate transfer operation                                   ; 
                                 ;----------------------------------------------------------------------; 
- 0635  EB 32                            JMP     SHORT RD_EXT            ; Return to caller 
+ 0633  EB 32                            JMP     SHORT RD_EXT            ; Return to caller 
                                         SUBTTL  Read - Interleaved ROM 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-22
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-22
 Read - Interleaved ROM                                      
 
                                         PAGE 
@@ -986,21 +1014,21 @@ Read - Interleaved ROM
                                 ;       Read the current time from the SmartWatch                      ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 0637                           RD_ROM0:REPEAT  RD_ROM0_WORD,4          ; Repeat for 8 bytes (4 words) 
+ 0635                           RD_ROM0:REPEAT  RD_ROM0_WORD,4          ; Repeat for 8 bytes (4 words) 
                                  
                                         REPEAT  RD_ROM0_BITS,16         ; Repeat for 16 bits in each word 
- 063F  A0 0008                          MOV     AL,DS:[1000b]           ; Read data byte (bit) from SmartWatch 
- 0642  D0 D8                            RCR     AL,1                    ; Rotate LSB to carry bit 
- 0644  D1 DB                            RCR     BX,1                    ; Rotate LSB to MSB of result register 
+ 063D  A0 0008                          MOV     AL,DS:[1000b]           ; Read data byte (bit) from SmartWatch 
+ 0640  D0 D8                            RCR     AL,1                    ; Rotate LSB to carry bit 
+ 0642  D1 DB                            RCR     BX,1                    ; Rotate LSB to MSB of result register 
                                         ENDR    RD_ROM0_BITS            ; Terminate bit fill repetition 
                                  
- 0649  8B C3                            MOV     AX,BX                   ; Get result data word 
- 064B  AB                               STOSW                           ; Store the complete 16 bit result 
+ 0647  8B C3                            MOV     AX,BX                   ; Get result data word 
+ 0649  AB                               STOSW                           ; Store the complete 16 bit result 
                                         ENDR    RD_ROM0_WORD            ; Terminate word fill repetition 
                                 ;----------------------------------------------------------------------; 
                                 ;       Terminate transfer operation                                   ; 
                                 ;----------------------------------------------------------------------; 
- 064F  EB 18                            JMP     SHORT RD_EXT            ; Return to caller 
+ 064D  EB 18                            JMP     SHORT RD_EXT            ; Return to caller 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;                                                                      ; 
@@ -1012,26 +1040,27 @@ Read - Interleaved ROM
                                 ;       Read the current time from the SmartWatch                      ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 0651                           RD_ROM1:REPEAT  RD_ROM1_WORD,4          ; Repeat for 8 bytes (4 words) 
+ 064F                           RD_ROM1:REPEAT  RD_ROM1_WORD,4          ; Repeat for 8 bytes (4 words) 
                                  
                                         REPEAT  RD_ROM1_BITS,16         ; Repeat for 16 bits in each word 
- 0659  A0 0009                          MOV     AL,DS:[1001b]           ; Read data byte (bit) from SmartWatch 
- 065C  D0 D8                            RCR     AL,1                    ; Rotate LSB to carry bit 
- 065E  D1 DB                            RCR     BX,1                    ; Rotate LSB to MSB of result register 
+ 0657  A0 0009                          MOV     AL,DS:[1001b]           ; Read data byte (bit) from SmartWatch 
+ 065A  D0 D8                            RCR     AL,1                    ; Rotate LSB to carry bit 
+ 065C  D1 DB                            RCR     BX,1                    ; Rotate LSB to MSB of result register 
                                         ENDR    RD_ROM1_BITS            ; Terminate bit fill repetition 
                                  
- 0663  8B C3                            MOV     AX,BX                   ; Get result data word 
- 0665  AB                               STOSW                           ; Store the complete 16 bit result 
+ 0661  8B C3                            MOV     AX,BX                   ; Get result data word 
+ 0663  AB                               STOSW                           ; Store the complete 16 bit result 
                                         ENDR    RD_ROM1_WORD            ; Terminate word fill repetition 
                                 ;----------------------------------------------------------------------; 
                                 ;       Return from SmartWatch service                                 ; 
                                 ;----------------------------------------------------------------------; 
- 0669                           RD_EXT: POPALL                          ; Restore all registers 
- 0673  C3                               RET                             ; Return to caller 
+ 0667                           RD_EXT: POPALL                          ; Restore all registers 
+ 0671  C3                               RET                             ; Return to caller 
                                 READ    ENDP 
                                         SUBTTL  SmartWatch write routine 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-23
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-23
 SmartWatch write routine                                    
 
                                         PAGE 
@@ -1051,38 +1080,39 @@ SmartWatch write routine
                                 ;                       SW$INIT contains 8 bytes of initialization     ; 
                                 ;                       SW$TIME contains the time data to be written   ; 
                                 ;----------------------------------------------------------------------; 
- 0674                           WRITE   PROC    NEAR                    ; Write SmartWatch time 
+ 0672                           WRITE   PROC    NEAR                    ; Write SmartWatch time 
                                         PUSHALL                         ; Save all registers 
- 067F  FA                               CLI                             ; Inhibit system interrupts 
+ 067D  FA                               CLI                             ; Inhibit system interrupts 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Reset the SmartWatch                                           ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 0680  E8 0730 R                        CALL    RESET                   ; Reset the SmartWatch 
+ 067E  E8 072E R                        CALL    RESET                   ; Reset the SmartWatch 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Transfer the SmartWatch protocol                               ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 0683  8D 36 0114 R                     LEA     SI,SW$INIT              ; Load initialization protocol address 
- 0687  E8 069C R                        CALL    WRT                     ; ... and write it to the Watch 
+ 0681  8D 36 0114 R                     LEA     SI,SW$INIT              ; Load initialization protocol address 
+ 0685  E8 069A R                        CALL    WRT                     ; ... and write it to the Watch 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Transfer the SmartWatch data                                   ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 068A  8D 36 011C R                     LEA     SI,SW$TIME              ; Load time data buffer address 
- 068E  E8 069C R                        CALL    WRT                     ; ... and write it to the Watch 
+ 0688  8D 36 011C R                     LEA     SI,SW$TIME              ; Load time data buffer address 
+ 068C  E8 069A R                        CALL    WRT                     ; ... and write it to the Watch 
                                 ;----------------------------------------------------------------------; 
                                 ;       Return from SmartWatch service                                 ; 
                                 ;----------------------------------------------------------------------; 
                                         POPALL                          ; Restore all registers 
- 069B  C3                               RET                             ; Return to caller 
+ 0699  C3                               RET                             ; Return to caller 
                                 WRITE   ENDP 
                                         SUBTTL  Write data bytes routine 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-24
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-24
 Write data bytes routine                                    
 
                                         PAGE 
@@ -1098,16 +1128,16 @@ Write data bytes routine
                                 ;----------------------------------------------------------------------; 
                                 ;       Arguments:      ES:[DI] points to the data to be written.      ; 
                                 ;----------------------------------------------------------------------; 
- 069C                           WRT     PROC    NEAR                    ; Write data bytes 
+ 069A                           WRT     PROC    NEAR                    ; Write data bytes 
                                         PUSHALL                         ; Save all registers 
                                 ;----------------------------------------------------------------------; 
                                 ;       Initialize data segment to that of the SmartWatch              ; 
                                 ;----------------------------------------------------------------------; 
- 06A7  2E: 8E 1E 0112 R                 MOV     DS,CS:SW$PARA           ; Load the SmartWatch data segment 
+ 06A5  2E: 8E 1E 0112 R                 MOV     DS,CS:SW$PARA           ; Load the SmartWatch data segment 
                                 ;----------------------------------------------------------------------; 
                                 ;       Determine access mode which will be used with SmartWatch       ; 
                                 ;----------------------------------------------------------------------; 
- 06AC  2E: 8B 1E 0110 R                 MOV     BX,CS:SW$MODE           ; Get SmartWatch access mode 
+ 06AA  2E: 8B 1E 0110 R                 MOV     BX,CS:SW$MODE           ; Get SmartWatch access mode 
                                 ;----------------------------------------------------------------------; 
                                 ;       Vector to action routine based on SmartWatch access mode       ; 
                                 ;----------------------------------------------------------------------; 
@@ -1119,27 +1149,28 @@ Write data bytes routine
                                 ;                                                                      ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 06C8  BB 0002                  WT_ROM: MOV     BX,0010b                ; Get ROM write function 
+ 06C6  BB 0002                  WT_ROM: MOV     BX,0010b                ; Get ROM write function 
                                  
                                  
                                         REPEAT  WT_ROM_WORD,4           ; Repeat for 8 bytes (4 words) 
- 06CF  26: AD                           LODS    WORD PTR ES:[SI]        ; Load the complete 16 bit source 
+ 06CD  26: AD                           LODS    WORD PTR ES:[SI]        ; Load the complete 16 bit source 
                                  
                                         REPEAT  WT_ROM_BITS,16          ; Repeat for 16 bits in each word 
- 06D5  D1 EB                            SHR     BX,1                    ; Trash data bit of BX 
- 06D7  D1 D8                            RCR     AX,1                    ; Get next data bit 
- 06D9  D1 D3                            RCL     BX,1                    ; Load new data bit 
- 06DB  8A 17                            MOV     DL,[BX]                 ; Write bit to SmartWatch 
+ 06D3  D1 EB                            SHR     BX,1                    ; Trash data bit of BX 
+ 06D5  D1 D8                            RCR     AX,1                    ; Get next data bit 
+ 06D7  D1 D3                            RCL     BX,1                    ; Load new data bit 
+ 06D9  8A 17                            MOV     DL,[BX]                 ; Write bit to SmartWatch 
                                         ENDR    WT_ROM_BITS             ; Terminate bit fill repetition 
                                  
                                         ENDR    WT_ROM_WORD             ; Terminate word fill repetition 
                                 ;----------------------------------------------------------------------; 
                                 ;       Terminate transfer operation                                   ; 
                                 ;----------------------------------------------------------------------; 
- 06E3  EB 40                            JMP     SHORT WT_EXT            ; Return to caller 
+ 06E1  EB 40                            JMP     SHORT WT_EXT            ; Return to caller 
                                         SUBTTL  Write - Interleaved ROM 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-25
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-25
 Write - Interleaved ROM                                     
 
                                         PAGE 
@@ -1150,26 +1181,26 @@ Write - Interleaved ROM
                                 ;                                                                      ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 06E5  BB 0004                  WT_ROM0:MOV     BX,0100b                ; Get ROM write function 
+ 06E3  BB 0004                  WT_ROM0:MOV     BX,0100b                ; Get ROM write function 
                                  
                                  
                                         REPEAT  WT_ROM0_WORD,4          ; Repeat for 8 bytes (4 words) 
- 06EC  26: AD                           LODS    WORD PTR ES:[SI]        ; Load the complete 16 bit source 
+ 06EA  26: AD                           LODS    WORD PTR ES:[SI]        ; Load the complete 16 bit source 
                                  
                                         REPEAT  WT_ROM0_BITS,16         ; Repeat for 16 bits in each word 
- 06F2  D1 CB                            ROR     BX,1                    ; Save bank bit by shifting right 
- 06F4  D1 EB                            SHR     BX,1                    ; Trash data bit of BX 
- 06F6  D1 D8                            RCR     AX,1                    ; Get next data bit 
- 06F8  D1 D3                            RCL     BX,1                    ; Load new data bit 
- 06FA  D1 C3                            ROL     BX,1                    ; Restore bank bit by shifting left 
- 06FC  8A 17                            MOV     DL,[BX]                 ; Write bit to SmartWatch 
+ 06F0  D1 CB                            ROR     BX,1                    ; Save bank bit by shifting right 
+ 06F2  D1 EB                            SHR     BX,1                    ; Trash data bit of BX 
+ 06F4  D1 D8                            RCR     AX,1                    ; Get next data bit 
+ 06F6  D1 D3                            RCL     BX,1                    ; Load new data bit 
+ 06F8  D1 C3                            ROL     BX,1                    ; Restore bank bit by shifting left 
+ 06FA  8A 17                            MOV     DL,[BX]                 ; Write bit to SmartWatch 
                                         ENDR    WT_ROM0_BITS            ; Terminate bit fill repetition 
                                  
                                         ENDR    WT_ROM0_WORD            ; Terminate word fill repetition 
                                 ;----------------------------------------------------------------------; 
                                 ;       Terminate transfer operation                                   ; 
                                 ;----------------------------------------------------------------------; 
- 0704  EB 1F                            JMP     SHORT WT_EXT            ; Return to caller 
+ 0702  EB 1F                            JMP     SHORT WT_EXT            ; Return to caller 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;                                                                      ; 
@@ -1177,31 +1208,32 @@ Write - Interleaved ROM
                                 ;                                                                      ; 
                                 ;                                                                      ; 
                                 ;----------------------------------------------------------------------; 
- 0706  BB 0005                  WT_ROM1:MOV     BX,0101b                ; Get ROM write function 
+ 0704  BB 0005                  WT_ROM1:MOV     BX,0101b                ; Get ROM write function 
                                  
                                  
                                         REPEAT  WT_ROM1_WORD,4          ; Repeat for 8 bytes (4 words) 
- 070D  26: AD                           LODS    WORD PTR ES:[SI]        ; Load the complete 16 bit source 
+ 070B  26: AD                           LODS    WORD PTR ES:[SI]        ; Load the complete 16 bit source 
                                  
                                         REPEAT  WT_ROM1_BITS,16         ; Repeat for 16 bits in each word 
- 0713  D1 CB                            ROR     BX,1                    ; Save bank bit by shifting right 
- 0715  D1 EB                            SHR     BX,1                    ; Trash data bit of BX 
- 0717  D1 D8                            RCR     AX,1                    ; Get next data bit 
- 0719  D1 D3                            RCL     BX,1                    ; Load new data bit 
- 071B  D1 C3                            ROL     BX,1                    ; Restore bank bit by shifting left 
- 071D  8A 17                            MOV     DL,[BX]                 ; Write bit to SmartWatch 
+ 0711  D1 CB                            ROR     BX,1                    ; Save bank bit by shifting right 
+ 0713  D1 EB                            SHR     BX,1                    ; Trash data bit of BX 
+ 0715  D1 D8                            RCR     AX,1                    ; Get next data bit 
+ 0717  D1 D3                            RCL     BX,1                    ; Load new data bit 
+ 0719  D1 C3                            ROL     BX,1                    ; Restore bank bit by shifting left 
+ 071B  8A 17                            MOV     DL,[BX]                 ; Write bit to SmartWatch 
                                         ENDR    WT_ROM1_BITS            ; Terminate bit fill repetition 
                                  
                                         ENDR    WT_ROM1_WORD            ; Terminate word fill repetition 
                                 ;----------------------------------------------------------------------; 
                                 ;       Return from SmartWatch service                                 ; 
                                 ;----------------------------------------------------------------------; 
- 0725                           WT_EXT: POPALL                          ; Restore all registers 
- 072F  C3                               RET                             ; Return to caller 
+ 0723                           WT_EXT: POPALL                          ; Restore all registers 
+ 072D  C3                               RET                             ; Return to caller 
                                 WRT     ENDP 
                                         SUBTTL  Reset SmartWatch routine 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-26
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-26
 Reset SmartWatch routine                                    
 
                                         PAGE 
@@ -1218,26 +1250,27 @@ Reset SmartWatch routine
                                 ;       Arguments:      SW$MODE indicates transfer mode type           ; 
                                 ;                       SW$PARA contains the SmartWatch paragraph      ; 
                                 ;----------------------------------------------------------------------; 
- 0730                           RESET   PROC    NEAR                    ; Reset SmartWatch 
+ 072E                           RESET   PROC    NEAR                    ; Reset SmartWatch 
                                         PUSHALL                         ; Save all registers 
                                 ;----------------------------------------------------------------------; 
                                 ;       Load loop counter for reset operation                          ; 
                                 ;----------------------------------------------------------------------; 
- 073B  B9 0041                          MOV     CX,65                   ; Load reset loop counter 
+ 0739  B9 0041                          MOV     CX,65                   ; Load reset loop counter 
                                 ;----------------------------------------------------------------------; 
                                 ;       Initialize data segment to that of the SmartWatch              ; 
                                 ;----------------------------------------------------------------------; 
- 073E  2E: 8E 1E 0112 R                 MOV     DS,CS:SW$PARA           ; Load the SmartWatch data segment 
+ 073C  2E: 8E 1E 0112 R                 MOV     DS,CS:SW$PARA           ; Load the SmartWatch data segment 
                                 ;----------------------------------------------------------------------; 
                                 ;       Determine access mode which will be used with SmartWatch       ; 
                                 ;----------------------------------------------------------------------; 
- 0743  2E: 8B 1E 0110 R                 MOV     BX,CS:SW$MODE           ; Get SmartWatch access mode 
+ 0741  2E: 8B 1E 0110 R                 MOV     BX,CS:SW$MODE           ; Get SmartWatch access mode 
                                 ;----------------------------------------------------------------------; 
                                 ;       Vector to action routine based on SmartWatch access mode       ; 
                                 ;----------------------------------------------------------------------; 
                                         CASE    BX,1,3,<RS_>,<ROM,ROM0,ROM1> 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-27
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-27
 Reset SmartWatch routine                                    
 
                                         PAGE 
@@ -1248,10 +1281,10 @@ Reset SmartWatch routine
                                 ;----------------------------------------------------------------------; 
                                 ;       Reset the SmartWatch by performing 65 consecutive reads.       ; 
                                 ;----------------------------------------------------------------------; 
- 075F  A0 0004                  RS_ROM: MOV     AL,DS:[0100b]           ; Issue reset sequence 
- 0762  E2 FB                            LOOP    RS_ROM                  ; Terminate repeat sequence 
+ 075D  A0 0004                  RS_ROM: MOV     AL,DS:[0100b]           ; Issue reset sequence 
+ 0760  E2 FB                            LOOP    RS_ROM                  ; Terminate repeat sequence 
                                  
- 0764  EB 0C                            JMP     SHORT RS_EXT            ; Return to caller 
+ 0762  EB 0C                            JMP     SHORT RS_EXT            ; Return to caller 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Reset protocol - ROM interleaved access mode bank 0            ; 
@@ -1259,10 +1292,10 @@ Reset SmartWatch routine
                                 ;----------------------------------------------------------------------; 
                                 ;       Reset the SmartWatch by performing 65 consecutive reads.       ; 
                                 ;----------------------------------------------------------------------; 
- 0766  A0 0008                  RS_ROM0:MOV     AL,DS:[1000b]           ; Issue reset sequence 
- 0769  E2 FB                            LOOP    RS_ROM0                 ; Terminate repeat sequence 
+ 0764  A0 0008                  RS_ROM0:MOV     AL,DS:[1000b]           ; Issue reset sequence 
+ 0767  E2 FB                            LOOP    RS_ROM0                 ; Terminate repeat sequence 
                                  
- 076B  EB 05                            JMP     SHORT RS_EXT            ; Return to caller 
+ 0769  EB 05                            JMP     SHORT RS_EXT            ; Return to caller 
                                 ;----------------------------------------------------------------------; 
                                 ;                                                                      ; 
                                 ;       Reset protocol - ROM interleaved access mode bank 1            ; 
@@ -1270,17 +1303,18 @@ Reset SmartWatch routine
                                 ;----------------------------------------------------------------------; 
                                 ;       Reset the SmartWatch by performing 65 consecutive reads.       ; 
                                 ;----------------------------------------------------------------------; 
- 076D  A0 0009                  RS_ROM1:MOV     AL,DS:[1001b]           ; Issue reset sequence 
- 0770  E2 FB                            LOOP    RS_ROM1                 ; Terminate repeat sequence 
+ 076B  A0 0009                  RS_ROM1:MOV     AL,DS:[1001b]           ; Issue reset sequence 
+ 076E  E2 FB                            LOOP    RS_ROM1                 ; Terminate repeat sequence 
                                 ;----------------------------------------------------------------------; 
                                 ;       Return from SmartWatch service                                 ; 
                                 ;----------------------------------------------------------------------; 
- 0772                           RS_EXT: POPALL                          ; Restore all registers 
- 077C  C3                               RET                             ; Return to caller 
+ 0770                           RS_EXT: POPALL                          ; Restore all registers 
+ 077A  C3                               RET                             ; Return to caller 
                                 RESET   ENDP 
                                         SUBTTL  Binary to hexadecimal conversion 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Page     1-28
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Page     1-28
 Binary to hexadecimal conversion                            
 
                                         PAGE 
@@ -1296,40 +1330,41 @@ Binary to hexadecimal conversion
                                 ;----------------------------------------------------------------------; 
                                 ;       Arguments:      DH is the byte to be converted and printed     ; 
                                 ;----------------------------------------------------------------------; 
- 077D                           HEX     PROC    NEAR                    ; Convert to ASCII hex 
+ 077B                           HEX     PROC    NEAR                    ; Convert to ASCII hex 
                                         PUSHALL                         ; Save all registers 
                                 ;----------------------------------------------------------------------; 
                                 ;       Convert and display four nibbles, starting with high nibble    ; 
                                 ;----------------------------------------------------------------------; 
                                         REPEAT  HEX_LOOP,2              ; Repeat 2 times 
- 078C  D0 C6                            ROL     DH,1                    ; Position the next nibble 
+ 078A  D0 C6                            ROL     DH,1                    ; Position the next nibble 
+ 078C  D0 C6                            ROL     DH,1                    ; 
  078E  D0 C6                            ROL     DH,1                    ; 
  0790  D0 C6                            ROL     DH,1                    ; 
- 0792  D0 C6                            ROL     DH,1                    ; 
- 0794  8A D6                            MOV     DL,DH                   ; Save nibble data 
- 0796  80 E2 0F                         AND     DL,0Fh                  ; Isolate 4 bit nibble 
- 0799  80 C2 30                         ADD     DL,'0'                  ; Convert nibble to ASCII 
+ 0792  8A D6                            MOV     DL,DH                   ; Save nibble data 
+ 0794  80 E2 0F                         AND     DL,0Fh                  ; Isolate 4 bit nibble 
+ 0797  80 C2 30                         ADD     DL,'0'                  ; Convert nibble to ASCII 
                                  
- 079C  80 FA 39                         CMP     DL,'9'                  ; Greater than 9? 
- 079F  7E 03                            JLE     HEX_OUT                 ; No, continue 
- 07A1  80 C2 07                         ADD     DL,7                    ; Yes, convert to A-F 
+ 079A  80 FA 39                         CMP     DL,'9'                  ; Greater than 9? 
+ 079D  7E 03                            JLE     HEX_OUT                 ; No, continue 
+ 079F  80 C2 07                         ADD     DL,7                    ; Yes, convert to A-F 
                                  
- 07A4                           HEX_OUT:PRINT                           ; Display the result byte 
+ 07A2                           HEX_OUT:PRINT                           ; Display the result byte 
                                         ENDR    HEX_LOOP                ; Convert additional nibbles 
                                 ;----------------------------------------------------------------------; 
                                 ;       Terminate procedure                                            ; 
                                 ;----------------------------------------------------------------------; 
                                         POPALL                          ; Restore all registers 
- 07B5  C3                               RET                             ; Return to caller 
+ 07B3  C3                               RET                             ; Return to caller 
                                 HEX     ENDP                            ; Return to caller 
                                 ;----------------------------------------------------------------------; 
                                 ;       Terminate assembly                                             ; 
                                 ;----------------------------------------------------------------------; 
- 07B6                           $SMW    ENDS 
+ 07B4                           $SMW    ENDS 
                                         END     SMW 
 
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Symbols-1
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Symbols-1
                                                              
 
 Macros:
@@ -1369,7 +1404,7 @@ Segments and Groups:
 
                 N a m e         	Size	Align	Combine Class
 
-$SMW . . . . . . . . . . . . . .  	07B6	PARA	PUBLIC	'$SMW'
+$SMW . . . . . . . . . . . . . .  	07B4	PARA	PUBLIC	'$SMW'
 
 Symbols:            
 
@@ -1386,17 +1421,18 @@ DAY  . . . . . . . . . . . . . .  	L BYTE 	0124	$SMW
 DISPL  . . . . . . . . . . . . .  	L NEAR	058F	$SMW
 DISPLAY  . . . . . . . . . . . .  	L NEAR	0503	$SMW
 
-EXIT . . . . . . . . . . . . . .  	L NEAR	05D5	$SMW
+EXIT . . . . . . . . . . . . . .  	L NEAR	05D3	$SMW
 
 FIND . . . . . . . . . . . . . .  	L NEAR	02A8	$SMW
 
-HEX  . . . . . . . . . . . . . .  	N PROC	077D	$SMW	Length = 0039
-HEX_LOOP . . . . . . . . . . . .  	L NEAR	078B	$SMW
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Symbols-2
+HEX  . . . . . . . . . . . . . .  	N PROC	077B	$SMW	Length = 0039
+HEX_LOOP . . . . . . . . . . . .  	L NEAR	0789	$SMW
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Symbols-2
                                                              
 
-HEX_OUT  . . . . . . . . . . . .  	L NEAR	07A4	$SMW
+HEX_OUT  . . . . . . . . . . . .  	L NEAR	07A2	$SMW
 
 MIL  . . . . . . . . . . . . . .  	L NEAR	057E	$SMW
 MODE . . . . . . . . . . . . . .  	L NEAR	01CD	$SMW
@@ -1404,26 +1440,26 @@ MON  . . . . . . . . . . . . . .  	L BYTE 	0144	$SMW
 
 NEXT . . . . . . . . . . . . . .  	L NEAR	0223	$SMW
 
-RD_EXT . . . . . . . . . . . . .  	L NEAR	0669	$SMW
-RD_ROM . . . . . . . . . . . . .  	L NEAR	061D	$SMW
-RD_ROM0  . . . . . . . . . . . .  	L NEAR	0637	$SMW
-RD_ROM0_BITS . . . . . . . . . .  	L NEAR	063E	$SMW
-RD_ROM0_WORD . . . . . . . . . .  	L NEAR	063A	$SMW
-RD_ROM1  . . . . . . . . . . . .  	L NEAR	0651	$SMW
-RD_ROM1_BITS . . . . . . . . . .  	L NEAR	0658	$SMW
-RD_ROM1_WORD . . . . . . . . . .  	L NEAR	0654	$SMW
-RD_ROM_BITS  . . . . . . . . . .  	L NEAR	0624	$SMW
-RD_ROM_WORD  . . . . . . . . . .  	L NEAR	0620	$SMW
-READ . . . . . . . . . . . . . .  	N PROC	05E2	$SMW	Length = 0092
-RESET  . . . . . . . . . . . . .  	N PROC	0730	$SMW	Length = 004D
-RS_EXT . . . . . . . . . . . . .  	L NEAR	0772	$SMW
-RS_ROM . . . . . . . . . . . . .  	L NEAR	075F	$SMW
-RS_ROM0  . . . . . . . . . . . .  	L NEAR	0766	$SMW
-RS_ROM1  . . . . . . . . . . . .  	L NEAR	076D	$SMW
+RD_EXT . . . . . . . . . . . . .  	L NEAR	0667	$SMW
+RD_ROM . . . . . . . . . . . . .  	L NEAR	061B	$SMW
+RD_ROM0  . . . . . . . . . . . .  	L NEAR	0635	$SMW
+RD_ROM0_BITS . . . . . . . . . .  	L NEAR	063C	$SMW
+RD_ROM0_WORD . . . . . . . . . .  	L NEAR	0638	$SMW
+RD_ROM1  . . . . . . . . . . . .  	L NEAR	064F	$SMW
+RD_ROM1_BITS . . . . . . . . . .  	L NEAR	0656	$SMW
+RD_ROM1_WORD . . . . . . . . . .  	L NEAR	0652	$SMW
+RD_ROM_BITS  . . . . . . . . . .  	L NEAR	0622	$SMW
+RD_ROM_WORD  . . . . . . . . . .  	L NEAR	061E	$SMW
+READ . . . . . . . . . . . . . .  	N PROC	05E0	$SMW	Length = 0092
+RESET  . . . . . . . . . . . . .  	N PROC	072E	$SMW	Length = 004D
+RS_EXT . . . . . . . . . . . . .  	L NEAR	0770	$SMW
+RS_ROM . . . . . . . . . . . . .  	L NEAR	075D	$SMW
+RS_ROM0  . . . . . . . . . . . .  	L NEAR	0764	$SMW
+RS_ROM1  . . . . . . . . . . . .  	L NEAR	076B	$SMW
 
 SEARCH . . . . . . . . . . . . .  	L NEAR	01C4	$SMW
 SET  . . . . . . . . . . . . . .  	L NEAR	03FB	$SMW
-SMW  . . . . . . . . . . . . . .  	N PROC	0100	$SMW	Length = 04E2
+SMW  . . . . . . . . . . . . . .  	N PROC	0100	$SMW	Length = 04E0
 SW$INIT  . . . . . . . . . . . .  	L WORD 	0114	$SMW
 SW$MODE  . . . . . . . . . . . .  	L WORD 	0110	$SMW
 SW$PARA  . . . . . . . . . . . .  	L WORD 	0112	$SMW
@@ -1432,18 +1468,18 @@ SW$TIME  . . . . . . . . . . . .  	L 0008	011C	$SMW
 VECTOR . . . . . . . . . . . . .  	L NEAR	028E	$SMW
 VERIFY . . . . . . . . . . . . .  	L NEAR	0206	$SMW
 
-WRITE  . . . . . . . . . . . . .  	N PROC	0674	$SMW	Length = 0028
-WRT  . . . . . . . . . . . . . .  	N PROC	069C	$SMW	Length = 0094
-WT_EXT . . . . . . . . . . . . .  	L NEAR	0725	$SMW
-WT_ROM . . . . . . . . . . . . .  	L NEAR	06C8	$SMW
-WT_ROM0  . . . . . . . . . . . .  	L NEAR	06E5	$SMW
-WT_ROM0_BITS . . . . . . . . . .  	L NEAR	06F1	$SMW
-WT_ROM0_WORD . . . . . . . . . .  	L NEAR	06EB	$SMW
-WT_ROM1  . . . . . . . . . . . .  	L NEAR	0706	$SMW
-WT_ROM1_BITS . . . . . . . . . .  	L NEAR	0712	$SMW
-WT_ROM1_WORD . . . . . . . . . .  	L NEAR	070C	$SMW
-WT_ROM_BITS  . . . . . . . . . .  	L NEAR	06D4	$SMW
-WT_ROM_WORD  . . . . . . . . . .  	L NEAR	06CE	$SMW
+WRITE  . . . . . . . . . . . . .  	N PROC	0672	$SMW	Length = 0028
+WRT  . . . . . . . . . . . . . .  	N PROC	069A	$SMW	Length = 0094
+WT_EXT . . . . . . . . . . . . .  	L NEAR	0723	$SMW
+WT_ROM . . . . . . . . . . . . .  	L NEAR	06C6	$SMW
+WT_ROM0  . . . . . . . . . . . .  	L NEAR	06E3	$SMW
+WT_ROM0_BITS . . . . . . . . . .  	L NEAR	06EF	$SMW
+WT_ROM0_WORD . . . . . . . . . .  	L NEAR	06E9	$SMW
+WT_ROM1  . . . . . . . . . . . .  	L NEAR	0704	$SMW
+WT_ROM1_BITS . . . . . . . . . .  	L NEAR	0710	$SMW
+WT_ROM1_WORD . . . . . . . . . .  	L NEAR	070A	$SMW
+WT_ROM_BITS  . . . . . . . . . .  	L NEAR	06D2	$SMW
+WT_ROM_WORD  . . . . . . . . . .  	L NEAR	06CC	$SMW
 
 ??0000 . . . . . . . . . . . . .  	L NEAR	0239	$SMW
 ??0001 . . . . . . . . . . . . .  	L NEAR	0257	$SMW
@@ -1454,20 +1490,21 @@ WT_ROM_WORD  . . . . . . . . . .  	L NEAR	06CE	$SMW
 ??0006 . . . . . . . . . . . . .  	L NEAR	02CE	$SMW
 ??0007 . . . . . . . . . . . . .  	L NEAR	02E9	$SMW
 ??0008 . . . . . . . . . . . . .  	L NEAR	02EE	$SMW
-??002D . . . . . . . . . . . . .  	L NEAR	061D	$SMW
-??002E . . . . . . . . . . . . .  	L NEAR	0617	$SMW
-Microsoft (R) Macro Assembler  Version 4.00                 12/16/20 01:17:48
-SMW$CLOCK V01.02                                            Symbols-3
+??002D . . . . . . . . . . . . .  	L NEAR	061B	$SMW
+??002E . . . . . . . . . . . . .  	L NEAR	0615	$SMW
+Microsoft (R) Macro Assembler  Version 4.00                 2/9/21 22:39:27
+ 
+SMW$CLOCK V01.03                                            Symbols-3
                                                              
 
-??002F . . . . . . . . . . . . .  	L NEAR	06C8	$SMW
-??0030 . . . . . . . . . . . . .  	L NEAR	06C2	$SMW
-??0031 . . . . . . . . . . . . .  	L NEAR	075F	$SMW
-??0032 . . . . . . . . . . . . .  	L NEAR	0759	$SMW
+??002F . . . . . . . . . . . . .  	L NEAR	06C6	$SMW
+??0030 . . . . . . . . . . . . .  	L NEAR	06C0	$SMW
+??0031 . . . . . . . . . . . . .  	L NEAR	075D	$SMW
+??0032 . . . . . . . . . . . . .  	L NEAR	0757	$SMW
 
 
-   1189 Source  Lines
-   2273 Total   Lines
+   1195 Source  Lines
+   2279 Total   Lines
     113 Symbols
 
   46722 Bytes symbol space free

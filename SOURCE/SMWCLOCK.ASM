@@ -1,4 +1,4 @@
-        TITLE   SMW$CLOCK V01.02
+        TITLE   SMW$CLOCK V01.03
         NAME    SMW$CLOCK
         PAGE    64,132
 ;----------------------------------------------------------------------;
@@ -86,6 +86,11 @@
 ;                                Fix bug in setting of 24-hour mode.   ;
 ;                                24-hour mode is selected by clearing  ;
 ;                                rather than setting the mode bit.     ;
+;                                                                      ;
+;                       V01.03 - 21-DEC-2020, Florian Reitz            ;
+;                                Y2K fix in DISPLAY.                   ;
+;                                Years after 1999 are now printed      ;
+;                                correctly.                            ;
 ;----------------------------------------------------------------------;
 ;       Assemble using standard instructions and suppress expansions   ;
 ;----------------------------------------------------------------------;
@@ -591,7 +596,7 @@ VECTOR: CASE    BX,0,2,<>,<FIND,CAL,SET>
 ;----------------------------------------------------------------------;
 ;       Display the SmartWatch segment address                         ;
 ;----------------------------------------------------------------------;
-FIND:   PRINT   ,<'SmartWatch V01.02 found at address '>
+FIND:   PRINT   ,<'SmartWatch V01.03 found at address '>
 
         MOV     AX,SW$PARA              ; Get address segment
         BIN_HEX AH                      ; Display high nibble
@@ -747,15 +752,16 @@ DISPLAY:MOV     AL,SW$TIME.DY           ; Get day-of-week
 ;----------------------------------------------------------------------;
 ;       Display the year                                               ;
 ;----------------------------------------------------------------------;
-        CMP     SW$TIME.YY,160          ; Is year greater 99?
+        CMP     SW$TIME.YY,0A0h         ; Is year greater 99?
         JGE     MIL                     ; Jump into new millenium
         PRINT   <'1'>                   ;
         PRINT   <'9'>                   ;
         JMP     DISPL                   ;
 MIL:    PRINT   <'2'>                   ;
         PRINT   <'0'>                   ;
-        SUB     SW$TIME.YY,160          ; Subtract 100 years in BCD
-DISPL:  BIN_HEX SW$TIME.YY              ; Display year
+        MOV     AL,SW$TIME.YY           ;
+        SUB     AL,0A0h                 ; Subtract 100 years in BCD
+DISPL:  BIN_HEX AL                      ; Display year
         PRINT   <','>                   ;
         PRINT   <' '>                   ;
 ;----------------------------------------------------------------------;

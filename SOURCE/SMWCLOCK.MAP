@@ -3,6 +3,6 @@
 Warning: no stack segment
 
  Start  Stop   Length Name                   Class
- 00000H 007B5H 007B6H $SMW                   $SMW
+ 00000H 007B3H 007B4H $SMW                   $SMW
 
 Program entry point at 0000:0100
